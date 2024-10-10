@@ -7,9 +7,17 @@ h2 {
   margin-bottom: 20px;
 }
 
+.home-image_wrapper {
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+}
+
 #recipe-image {
-  max-width: 30%;
+  width: 40%;
   height: auto;
+  aspect-ratio: 14 / 13;
+  object-fit: cover;
 }
 
 .buttons-wrapper {
