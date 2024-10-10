@@ -1,0 +1,42 @@
+.home-wrapper {
+  margin: 0 auto;
+}
+
+h2 {
+  font-size: 3em;
+}
+
+.buttons-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 30px;
+}
+
+#left-arrow, #right-arrow {
+  border: none;
+  background: #ffffff;
+  font-size: 3rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+#left-arrow:hover {
+  color: rgb(223, 77, 77);
+}
+
+#right-arrow:hover {
+  color: rgb(70, 70, 230);
+}
+
+#comments {
+  padding: 8px;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+#comments:hover {
+  background: #e7dcdc;
+}
