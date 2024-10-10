@@ -26,7 +26,9 @@ function Home() {
       { recipes ?  (
         <>
       <h2>{recipes[0].recipeName}</h2>
-      <img id="recipe-image" src={recipes[0].recipeThumb} alt={recipes[0].recipeName} />
+      <div className='home-image_wrapper'>
+        <img id="recipe-image" src={recipes[0].recipeThumb} alt={recipes[0].recipeName} />
+      </div>
       <div className='buttons-wrapper'>
         <button id="left-arrow" onClick={() => nextRecipe(recipes[0].uuid)}>&laquo;</button>
         <button id="comments">Comments</button>
