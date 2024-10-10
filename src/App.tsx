@@ -1,13 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
+import Home from './components/Home/Home';
 
-function App() {
+function App() : JSX.Element {
   return (
-    <div>
+    <div className='App'>
       <Routes>
-        <Route path="/" element={<></>}/>
+        <Route path="/" element={<Home />}/>
       </Routes>
     </div>
   );
