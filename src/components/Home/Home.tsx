@@ -5,7 +5,7 @@ function Home() {
   const [recipes, setRecipes] = useState<Array<any> | undefined>(undefined);
 
   function nextRecipe(recipeId: string) {
-    const removedRecipe = recipes?.filter(recipe => {
+    const removedRecipe = recipes?.filter((recipe: any) => {
         return recipe.uuid !== recipeId;
     })
     setRecipes(removedRecipe)
