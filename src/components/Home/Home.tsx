@@ -1,16 +1,38 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "../../styles/Home/Home.css"
 
 function Home() {
+  const [recipes, setRecipes] = useState<Array<any> | undefined>(undefined);
+
+  function nextRecipe(recipeId: string) {
+    const removedRecipe = recipes?.filter(recipe => {
+        return recipe.uuid !== recipeId;
+    })
+    setRecipes(removedRecipe)
+  }
+
+  useEffect(() => {
+    async function getRecipes() {
+      const response = await fetch("http://localhost:8888/recipes")
+      const data = await response.json();
+
+      setRecipes(data)
+    }
+    getRecipes()
+  }, [])
+
   return (
     <div className='home-wrapper'>
-      <h2>Recipe Title</h2>
-      <img src='' alt=''></img>
+      { recipes ?  (
+        <>
+      <h2>{recipes[0].recipeName}</h2>
+      <img id="recipe-image" src={recipes[0].recipeThumb} alt={recipes[0].recipeName} />
       <div className='buttons-wrapper'>
-        <button id="left-arrow">&laquo;</button>
+        <button id="left-arrow" onClick={() => nextRecipe(recipes[0].uuid)}>&laquo;</button>
         <button id="comments">Comments</button>
         <button id="right-arrow">&raquo;</button>
-      </div>
+      </div></>) : (<h2>Loading</h2>)
+      }
     </div>
   )
 }
