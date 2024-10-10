@@ -18,7 +18,8 @@ function login() {
             },
             body: JSON.stringify(data)
         });
-        console.log(result);
+        const objResult = result.json();
+        console.log(objResult);
     }   
 
     return (
