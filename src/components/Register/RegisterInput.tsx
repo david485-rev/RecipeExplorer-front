@@ -68,7 +68,7 @@ function RegisterInput(props: any) {
             <form id='registerForm' onSubmit={submitHandler}>
                 <div className="mb-3">
                     <label htmlFor="inputEmail" className="htmlForm-label"></label>
-                    <input type="text" name="email" placeholder='email' className="htmlForm-control" id="inputEmail" aria-describedby="emailHelp"/>
+                    <input type="email" name="email" placeholder='email' className="htmlForm-control" id="inputEmail" aria-describedby="emailHelp"/>
                     {/* <div id="emailHelp" className="htmlForm-text">Email must be unique.</div> */}
                 </div>
                 <div className="mb-3">
