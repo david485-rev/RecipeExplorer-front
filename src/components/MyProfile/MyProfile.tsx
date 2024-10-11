@@ -6,6 +6,7 @@ function MyProfile() {
     let [email, setEmail] = useState("");
     let [description, setDescription] = useState("");
     let [picture, setPicture] = useState("");
+    let [message, setMessage] = useState("");
     let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMmQxMzk1ZDktMGQ5MC00YzBjLTljZjEtZDQyYmNmYjJiNzgwIiwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTcyODY3MTk1NiwiZXhwIjoxNzI5Mjc2NzU2fQ.MAeJ34uTDdeQ--x3ruRKkjXGr1G57orn-u6jGrnKX00'    
 
     useEffect(() => {
@@ -28,18 +29,24 @@ function MyProfile() {
 
         const headers = {'Authorization': `Bearer ${token}`};
 
-        console.log(name, email, description, picture);
-        axios.post('http://localhost:8888/users/profile', {
+        try{
+            axios.post('http://localhost:8888/users/profile', {
             username: name,
             email:email,
             description: description,
             picture: picture
             }, {headers}).then((responseBody) => {
-            console.log(responseBody);
+                console.log(responseBody);
+                setMessage(responseBody.data.message);
             })
+            
+        }catch(error){
+            setMessage('userID or email already exist');
+            console.log(error);
         }
     
-
+    }
+    
     return (
         <>
             <form onSubmit={submitHandler}>
@@ -60,6 +67,7 @@ function MyProfile() {
                 <br/>
                 <input type="text" value = {picture} onChange={(event: any) => setPicture(event.target.value)}/>
                 <br/>
+                <h6>{message}</h6>
                 <button onClick={submitHandler}>Submit</button>
             </form>
         </>    
