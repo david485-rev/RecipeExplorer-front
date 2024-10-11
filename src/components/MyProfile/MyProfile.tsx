@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios';
 
 function MyProfile() {
     let [name, setName] = useState("");
     let [email, setEmail] = useState("");
     let [description, setDescription] = useState("");
     let [picture, setPicture] = useState("");
-        
+    let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMmQxMzk1ZDktMGQ5MC00YzBjLTljZjEtZDQyYmNmYjJiNzgwIiwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTcyODY3MTk1NiwiZXhwIjoxNzI5Mjc2NzU2fQ.MAeJ34uTDdeQ--x3ruRKkjXGr1G57orn-u6jGrnKX00'    
+
     useEffect(() => {
-        async function getProfile(){
-            let token = 'uuid';
-            let response = await fetch(`http://localhost/3000/profile/${token}`);
-            let responseBody = await response.json();
-            setName(responseBody.username);
-            setEmail(responseBody.email);
-            setDescription(responseBody.description);
-            setPicture(responseBody.picture);
-        }       
-        getProfile();    
+        let uuid = '2d1395d9-0d90-4c0c-9cf1-d42bcfb2b780';
+        axios.get(`http://localhost:8888/users/profile/${uuid}`).then((responseBody)=>{
+        setName(responseBody.data.username);
+        setEmail(responseBody.data.email);
+        setDescription(responseBody.data.description);
+        setPicture(responseBody.data.picture);
+            })  
     }, [])
     
 
@@ -26,7 +25,19 @@ function MyProfile() {
         setEmail(email);
         setDescription(description);
         setPicture(picture);
-      }
+
+        const headers = {'Authorization': `Bearer ${token}`};
+
+        console.log(name, email, description, picture);
+        axios.post('http://localhost:8888/users/profile', {
+            username: name,
+            email:email,
+            description: description,
+            picture: picture
+            }, {headers}).then((responseBody) => {
+            console.log(responseBody);
+            })
+        }
     
 
     return (
@@ -49,7 +60,6 @@ function MyProfile() {
                 <br/>
                 <input type="text" value = {picture} onChange={(event: any) => setPicture(event.target.value)}/>
                 <br/>
-
                 <button onClick={submitHandler}>Submit</button>
             </form>
         </>    
