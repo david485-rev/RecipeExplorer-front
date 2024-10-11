@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import LoginInput, { LoginInputType } from './LoginInput';
+import LoginInput, { LoginInputType } from './LoginView';
 import axios from 'axios';
 
 const config = require("../../config");
@@ -12,7 +12,7 @@ function LoginContainer(props: any) {
     async function login(user: LoginInputType) {
         try {
             let response: any = await getUser(user);
-            props.setToken(response.data);
+            props.setUser(response.data);
         } catch (error) {
             console.error(error);
         }
@@ -21,7 +21,7 @@ function LoginContainer(props: any) {
     async function getUser(user: LoginInputType) {
         try {
             let response = await axios.post(`${URL}/users/login`, user);
-            console.log(response);
+            //console.log(response);
             return response;
         } catch (error) {
             console.error(error);
