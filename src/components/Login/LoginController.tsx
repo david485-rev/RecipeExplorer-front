@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
-import LoginInput, { LoginInputType } from './LoginView';
+import LoginView, { LoginViewType } from './LoginView';
 import axios from 'axios';
 
 const config = require("../../config");
 
 const URL = `${config.path}`;
 
-function LoginContainer(props: any) {
+function LoginController(props: any) {
 
 
-    async function login(user: LoginInputType) {
+    async function login(user: LoginViewType) {
         try {
             let response: any = await getUser(user);
             props.setUser(response.data);
@@ -18,7 +18,7 @@ function LoginContainer(props: any) {
         }
     }
 
-    async function getUser(user: LoginInputType) {
+    async function getUser(user: LoginViewType) {
         try {
             let response = await axios.post(`${URL}/users/login`, user);
             //console.log(response);
@@ -31,9 +31,9 @@ function LoginContainer(props: any) {
 
     return (
         <>
-            <LoginInput login={login} />
+            <LoginView login={login} />
         </>
     )
 }
 
-export default LoginContainer
+export default LoginController

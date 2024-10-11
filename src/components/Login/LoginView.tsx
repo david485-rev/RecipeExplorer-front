@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 
-export type LoginInputType = {
+export type LoginViewType = {
     username: string,
     password: string
 }
 
-function LoginInput(props: any) {
+function LoginView(props: any) {
 
-    const [userInput, setUserInput] = useState<LoginInputType>({ username: "", password: "" });
+    const [userInput, setUserInput] = useState<LoginViewType>({ username: "", password: "" });
 
     function handleSubmit(event: any) {
         event.preventDefault();
@@ -24,4 +24,4 @@ function LoginInput(props: any) {
     )
 }
 
-export default LoginInput
+export default LoginView

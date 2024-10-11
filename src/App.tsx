@@ -1,10 +1,10 @@
-import React { useState } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import HomeController from './components/Home/HomeController';
 import RegisterContainer from './components/Register/RegisterContainer';
-import Login from "./components/Login/LoginController";
 import {User, UserContext} from "./components/Context/UserContext"
+import LoginController from './components/Login/LoginController';
 
 function App() : JSX.Element {
   const [user, setUser] = useState<User>({} as any)
@@ -14,7 +14,7 @@ function App() : JSX.Element {
       <Routes>
         <Route path="/" element={<HomeController />}/>
         <Route path="/register" element={<RegisterContainer/>}/>
-        <Route path="/login" element={<Login setUser={setUser} />} />
+        <Route path="/login" element={<LoginController setUser={setUser} />} />
       </Routes>
       </UserContext.Provider>
     </div>
