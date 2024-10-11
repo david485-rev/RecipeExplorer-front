@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import LoginInput, { LoginInputType } from './LoginInput';
 import axios from 'axios';
-import TempDisplay from '../TempDisplay/tempDisplay';
 
 const config = require("../../config");
 
@@ -33,7 +32,6 @@ function LoginContainer(props: any) {
     return (
         <>
             <LoginInput login={login} />
-            <TempDisplay/>
         </>
     )
 }
