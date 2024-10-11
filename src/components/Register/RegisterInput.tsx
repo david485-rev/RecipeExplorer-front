@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { ResponseBody } from './RegisterContainer';
+import './RegisterInput.css'
 
 type RegisterInputType = {
     email: string,
@@ -25,21 +26,13 @@ function RegisterInput(props: any) {
             const resultData = await result.json();
             const message = resultData.message;
 
-            const response: {status: number, message: string} = {
+            const response: { status: number, message: string } = {
                 status: status,
                 message: message
             }
 
-            //console.log(response)
-            /*
-                {
-                    message: "User successfully registered!",
-                    status: 201
-                }
-            */
-
             return response;
-        } catch(err) {
+        } catch (err) {
             console.log(err)
         }
     }
@@ -50,49 +43,49 @@ function RegisterInput(props: any) {
 
         const form = event.target;
         const formData = new FormData(form);
-        
+
         const data = {
             email: formData.get("email") as string,
             username: formData.get("username") as string,
             password: formData.get("password") as string
         }
 
-        try{
+        try {
             const result: ResponseBody | undefined = await registerUser(data);
-            //console.log(result)
-            /*
-                {
-                    message: "User successfully registered!",
-                    status: 201
-                }
-            */
 
-            if(!result) {
+            if (!result) {
                 throw new Error();
             }
 
-            props.setResponseData({status: result.status, message: result.message});
-        } catch(err) {
+            props.setResponseData({ status: result.status, message: result.message });
+        } catch (err) {
             console.log(err)
         }
     }
 
-  return (
-    <>
-        <form onSubmit={submitHandler}>
-            <label htmlFor="email">Email</label>
-            <input type="text" name="email" placeholder='email'/>
-            <br/>
-            <label htmlFor="username">Username</label>
-            <input type="text" name="username" placeholder='username'/>
-            <br/>
-            <label htmlFor="password">Password</label>
-            <input type="password" name="password" placeholder='password'/>
-            <br/>
-            <button type="submit">Submit</button>
-        </form>
-    </>
-  )
+    return (
+        <>
+            <form id='registerForm' onSubmit={submitHandler}>
+                <div className="mb-3">
+                    <label htmlFor="inputEmail" className="htmlForm-label"></label>
+                    <input type="text" name="email" placeholder='email' className="htmlForm-control" id="inputEmail" aria-describedby="emailHelp"/>
+                    {/* <div id="emailHelp" className="htmlForm-text">Email must be unique.</div> */}
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="inputUsername" className="htmlForm-label"></label>
+                    <input type="text" name="username" placeholder='username' className="htmlForm-control" id="inputUsername" aria-describedby="emailHelp"/>
+                    {/* <div id="usernameHelp" className="htmlForm-text">Username must be unique.</div> */}
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="inputPassword" className="htmlForm-label"></label>
+                    <input type="password" name="password" placeholder='password' className="htmlForm-control" id="inputPassword"/>
+                </div>
+                <button type="submit" className="btn btn-primary">Submit</button>
+            </form>
+        </>
+
+
+    )
 }
 
 export default RegisterInput
