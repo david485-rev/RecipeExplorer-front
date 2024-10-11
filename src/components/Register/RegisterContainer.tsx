@@ -1,15 +1,21 @@
 import React, { useState } from 'react'
 import RegisterInput from './RegisterInput'
 
+export type ResponseBody = {
+    status: number,
+    message: string
+}
+
 function RegisterContainer() {
 
-    const [status, setStatus] = useState(0);
+    const [responseData, setResponseData] = useState<ResponseBody>({status: 0, message: ''});
 
   return (
     <>
-        <RegisterInput setStatus={setStatus}/>
+        <RegisterInput setResponseData={setResponseData}/>
         {
-            status == 201 ? <p>Created</p> : <p>Error</p>
+            //responseData.status == 201 ? <p>{responseData.message}</p> : <p>Error</p>
+            <p>{responseData.message}</p>
         }
     </>
   )

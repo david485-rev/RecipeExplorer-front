@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { ResponseBody } from './RegisterContainer';
 
 type RegisterInputType = {
     email: string,
@@ -8,7 +9,7 @@ type RegisterInputType = {
 
 function RegisterInput(props: any) {
 
-    // const [status, setStatus] = useState(0)
+    //const [status, setStatus] = useState(0)
 
     async function registerUser(data: RegisterInputType) {
         try {
@@ -20,8 +21,24 @@ function RegisterInput(props: any) {
                 body: JSON.stringify(data)
             })
 
-            //return result.json(); // gives back an object with a message attribute
-            return result;
+            const status = result.status;
+            const resultData = await result.json();
+            const message = resultData.message;
+
+            const response: {status: number, message: string} = {
+                status: status,
+                message: message
+            }
+
+            //console.log(response)
+            /*
+                {
+                    message: "User successfully registered!",
+                    status: 201
+                }
+            */
+
+            return response;
         } catch(err) {
             console.log(err)
         }
@@ -40,9 +57,24 @@ function RegisterInput(props: any) {
             password: formData.get("password") as string
         }
 
-        const result = await registerUser(data);
-        props.setStatus(result?.status);
-        console.log(result?.status)
+        try{
+            const result: ResponseBody | undefined = await registerUser(data);
+            //console.log(result)
+            /*
+                {
+                    message: "User successfully registered!",
+                    status: 201
+                }
+            */
+
+            if(!result) {
+                throw new Error();
+            }
+
+            props.setResponseData({status: result.status, message: result.message});
+        } catch(err) {
+            console.log(err)
+        }
     }
 
   return (
