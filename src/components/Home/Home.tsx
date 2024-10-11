@@ -88,7 +88,6 @@ function Home() {
     } else {
       setRecipes(randRecipe)
     }
-    console.log(recipes)
   }
   
   function randomIndex(recipesArr: Recipe[]) {
