@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import Home from './components/Home/Home';
+import HomeController from './components/Home/HomeController';
 
 function App() : JSX.Element {
   return (
     <div className='App'>
       <Routes>
-        <Route path="/" element={<Home />}/>
+        <Route path="/" element={<HomeController />}/>
       </Routes>
     </div>
   );
