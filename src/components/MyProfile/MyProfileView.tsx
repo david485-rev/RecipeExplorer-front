@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import axios from 'axios';
+import {UserContext} from '../Context/UserContext';
 export type ProfileInputType = {
     username: string,
     email: string,
@@ -8,6 +9,7 @@ export type ProfileInputType = {
 }
 
 function MyProfileView(props: any) {
+    const user = useContext(UserContext);
     let [userInput, setUserInput] = useState<ProfileInputType>({username: "", email: "", description: "", picture: ""});
     let [message, setMessage] = useState("");
 
@@ -26,7 +28,8 @@ function MyProfileView(props: any) {
 
     useEffect(() => {
         try {
-            let uuid = '2d1395d9-0d90-4c0c-9cf1-d42bcfb2b780';
+            //const uuid = user?.uuid;
+            const uuid = '2d1395d9-0d90-4c0c-9cf1-d42bcfb2b780';
             axios.get(`http://localhost:8888/users/profile/${uuid}`).then((responseBody)=>{
             setUserInput(responseBody.data);
             })
@@ -40,6 +43,10 @@ function MyProfileView(props: any) {
         
             <form onSubmit={submitHandler}>
                 <h1>My Profile</h1>
+                <img src = {userInput.picture} alt = "my image" width="100" height="100" /> 
+                <br/>
+                <input type="string" value = {userInput.picture} onChange={(event: any) => setUserInput({...userInput, picture: event.target.value})}/>
+                <br/>
                 <label htmlFor="username">Username:</label>
                 <br/>
                 <input type="text" value={userInput.username} onChange={(event: any) => setUserInput({...userInput, username: event.target.value})}/>
@@ -53,9 +60,6 @@ function MyProfileView(props: any) {
                 <input type="text" value = {userInput.description} onChange={(event: any) => setUserInput({...userInput, description: event.target.value})}/>
                 <br/>
                 <label htmlFor="email">Email:</label>
-                <br/>
-                <img src = {userInput.picture}/>
-                <input type="string" value = {userInput.picture} onChange={(event: any) => setUserInput({...userInput, picture: event.target.value})}/>
                 <br/>
                 <h6>{message}</h6>
                 <button onClick={submitHandler}>Submit</button>

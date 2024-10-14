@@ -5,9 +5,12 @@ import MyProfileView from './MyProfileView';
 import { ProfileInputType } from './MyProfileView';
 
 
-function MyProfileController(props: any) {
+function MyProfileController(props: any) { 
+     
+    const user = useContext(UserContext);
 
-    async function updateUser(userInput: ProfileInputType){;
+    async function updateUser(userInput: ProfileInputType){
+        //const token = user?.token;
         let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiMmQxMzk1ZDktMGQ5MC00YzBjLTljZjEtZDQyYmNmYjJiNzgwIiwidXNlcm5hbWUiOiJ1c2VyMSIsImlhdCI6MTcyODkyMTAwNiwiZXhwIjoxNzI5NTI1ODA2fQ.bIYvY5YTdIk346ykMOinui6Uw0-jZhsQIn5RgJJUC9Y';    
         const headers = {'Authorization': `Bearer ${token}`};
         try{
