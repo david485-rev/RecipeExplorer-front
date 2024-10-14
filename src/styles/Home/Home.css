@@ -10,6 +10,7 @@ h2 {
 .home-info_wrapper {
   text-align: left;
   font-size: 1.1rem;
+  text-transform: capitalize;
 }
 
 #pipe {
