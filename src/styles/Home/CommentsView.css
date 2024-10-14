@@ -1,3 +1,7 @@
+.hidden {
+  display: none;
+}
+
 .comments-wrapper {
   text-align: left;
 }
