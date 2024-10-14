@@ -80,7 +80,10 @@ function RegisterInput(props: any) {
                     <label htmlFor="inputPassword" className="htmlForm-label"></label>
                     <input type="password" name="password" placeholder='password' className="htmlForm-control" id="inputPassword"/>
                 </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <div>
+                    <button type="submit" className="btn btn-primary mx-3">Submit</button>
+                    <button type="reset" className="btn btn-danger mx-3">Reset</button>
+                </div>
             </form>
         </>
 
