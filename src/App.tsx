@@ -13,12 +13,12 @@ function App() : JSX.Element {
   return (
     <div className='App'>
       <UserContext.Provider value={user}>
-      <NavBar/>
+      <NavBar setUser={(user: any) => setUser(user)}/>
       <Routes>
         <Route path="/MyProfile" element={<MyProfile/>}/>
         <Route path="/" element={<HomeController />}/>
         <Route path="/register" element={<RegisterContainer/>}/>
-        <Route path="/login" element={<LoginController setUser={setUser} />} />
+        <Route path="/login" element={<LoginController setUser={(user: any) => setUser(user)} />} />
       </Routes>
       </UserContext.Provider>
     </div>

@@ -1,9 +1,14 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { UserContext } from "../Context/UserContext";
+import { User, UserContext } from "../Context/UserContext";
 
-function NavBar() {
+function NavBar(props: any) {
     const user = useContext(UserContext);
+
+    const logout = () => {
+        props.setUser(undefined);
+        return <Link className="nav-link" to="/">Logout</Link>;
+    }
 
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -32,7 +37,7 @@ function NavBar() {
                         <li className="nav-item">
                             {
                                 user?.token ? 
-                                    <Link className="nav-link" to="/">Logout</Link> :
+                                    logout() :
                                     <Link className="nav-link" to="/login">Login</Link>
                             }
 
