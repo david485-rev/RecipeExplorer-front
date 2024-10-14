@@ -21,7 +21,7 @@ function LoginController(props: any) {
     async function getUser(user: LoginViewType) {
         try {
             let response = await axios.post(`${URL}/users/login`, user);
-            //console.log(response);
+            console.log(response);
             return response;
         } catch (error) {
             console.error(error);

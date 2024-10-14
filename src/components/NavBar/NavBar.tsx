@@ -32,8 +32,8 @@ function NavBar() {
                         <li className="nav-item">
                             {
                                 user?.token ? 
-                                    <Link className="nav-link" to="/">Logout</Link> : 
-                                    <Link className="nav-link" to="/login">Login</Link>        
+                                    <Link className="nav-link" to="/">Logout</Link> :
+                                    <Link className="nav-link" to="/login">Login</Link>
                             }
 
                             
