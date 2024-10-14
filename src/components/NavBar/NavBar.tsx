@@ -1,13 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { User, UserContext } from "../Context/UserContext";
 
 function NavBar(props: any) {
     const user = useContext(UserContext);
 
-    const logout = () => {
-        props.setUser(undefined);
-        return <Link className="nav-link" to="/">Logout</Link>;
+    function logout() {
+        // console.log(`before:`)
+        // console.log(user);
+        props.setUser(undefined); // sets user token to undefined
+        // these below console.logs don't show the updated user token
+        // console.log('after:');
+        // console.log(user);
     }
 
     return (
@@ -36,12 +40,10 @@ function NavBar(props: any) {
                         </li>
                         <li className="nav-item">
                             {
-                                user?.token ? 
-                                    logout() :
+                                user?.token ?
+                                    <Link className="nav-link" to="/" onClick={logout}>Logout</Link> :
                                     <Link className="nav-link" to="/login">Login</Link>
                             }
-
-                            
                         </li>
                     </ul>
                     <form className="d-flex">
