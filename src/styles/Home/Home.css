@@ -13,9 +13,13 @@ h2 {
   text-transform: capitalize;
 }
 
-#pipe {
-  padding: 0 10px;
-  height: 1.3rem;
+#cuisine {
+  border-right: 1px solid #333333;
+  padding-right: 10px;
+}
+
+#category {
+  padding-left: 10px;
 }
 
 .home-wrapper {
@@ -23,7 +27,7 @@ h2 {
   flex-direction: column;
   overflow: hidden;
   justify-content: center;
-  width: 40%;
+  width: 30%;
 }
 
 #recipe-image {
@@ -38,7 +42,6 @@ h2 {
   justify-content: center;
   align-items: center;
   column-gap: 30px;
-  margin-top: 30px;
 }
 
 #left-arrow, #right-arrow {
@@ -46,7 +49,8 @@ h2 {
   background: #ffffff;
   font-size: 3rem;
   cursor: pointer;
-  padding: 0;
+  padding-top: 0;
+  padding-bottom: 10px;
 }
 
 #left-arrow:hover {
@@ -58,9 +62,9 @@ h2 {
 }
 
 #comments {
-  padding: 8px;
+  padding: 4px 8px;
   border-radius: 10px;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   background: #ffffff;
   cursor: pointer;
 }
@@ -80,4 +84,5 @@ h2 {
 
 #description {
   font-size: 1.1rem;
+  margin-bottom: 0;
 }
