@@ -81,8 +81,7 @@ function HomeController() {
   
   function combineRecipes(randRecipe: Recipe[], recipesArr: Recipe[] | undefined) {
     if (recipesArr) {
-      const indexRand = Math.floor(Math.random() * (recipesArr.length + 1));
-      const combinedRecipes = [...recipesArr?.slice(0, indexRand), ...randRecipe, ...recipesArr?.slice(indexRand)];
+      const combinedRecipes = [...recipesArr, ...randRecipe];
       
       randomIndex(combinedRecipes);
       setRecipes(combinedRecipes);
