@@ -7,14 +7,26 @@ h2 {
   margin-bottom: 20px;
 }
 
-.home-image_wrapper {
+.home-info_wrapper {
+  text-align: left;
+  font-size: 1.1rem;
+}
+
+#pipe {
+  padding: 0 10px;
+  height: 1.3rem;
+}
+
+.home-wrapper {
   display: flex;
+  flex-direction: column;
   overflow: hidden;
   justify-content: center;
+  width: 40%;
 }
 
 #recipe-image {
-  width: 40%;
+  width: 100%;
   height: auto;
   aspect-ratio: 14 / 13;
   object-fit: cover;
@@ -54,4 +66,17 @@ h2 {
 
 #comments:hover {
   background: #e7dcdc;
+}
+
+.home-desc_wrapper {
+  text-align: left;
+  margin-top: 15px;
+}
+
+.home-desc_wrapper h4 {
+  font-size: 1.3rem;
+}
+
+#description {
+  font-size: 1.1rem;
 }
