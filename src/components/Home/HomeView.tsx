@@ -17,7 +17,7 @@ function HomeView({recipeIndex, recipesArr, skipRecipe}: HomeProps) {
       </div>
       <div className='home-desc_wrapper'>
         <h4>Description:</h4>
-        <p id="description">{recipesArr[recipeIndex].description ?? "No description"}</p>
+        <p id="description">{recipesArr[recipeIndex].description ?? "No description available"}</p>
       </div>
       <div className='buttons-wrapper'>
         <button id="left-arrow" onClick={skipRecipe}>&laquo;</button>
