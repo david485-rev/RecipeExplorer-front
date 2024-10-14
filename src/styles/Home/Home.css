@@ -13,12 +13,12 @@ h2 {
   text-transform: capitalize;
 }
 
-#cuisine {
+#rating, #cuisine {
   border-right: 1px solid #333333;
   padding-right: 10px;
 }
 
-#category {
+#cuisine, #category {
   padding-left: 10px;
 }
 
