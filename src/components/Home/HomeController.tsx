@@ -107,10 +107,18 @@ function HomeController() {
       const sumRatings = recipeRatings.reduce((prevVal, currVal) => {
         return prevVal + currVal
       }, 0);
+
+      let ratingAvg; 
+
+      if ((sumRatings / recipeRatings.length) % 1 !== 0) {
+        ratingAvg = (sumRatings / recipeRatings.length).toFixed(1);
+      } else {
+        ratingAvg = sumRatings / recipeRatings.length;
+      }
       
-      setRecipeRating(`${sumRatings / recipeRatings.length} / 10`)
+      setRecipeRating(`${ratingAvg}`);
     } else {
-      setRecipeRating("No rating")
+      setRecipeRating("No rating");
     }
   }
   
