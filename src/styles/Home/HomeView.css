@@ -7,14 +7,31 @@ h2 {
   margin-bottom: 20px;
 }
 
-.home-image_wrapper {
+.home-info_wrapper {
+  text-align: left;
+  font-size: 1.1rem;
+  text-transform: capitalize;
+}
+
+#rating, #cuisine {
+  border-right: 1px solid #333333;
+  padding-right: 10px;
+}
+
+#cuisine, #category {
+  padding-left: 10px;
+}
+
+.home-wrapper {
   display: flex;
+  flex-direction: column;
   overflow: hidden;
   justify-content: center;
+  width: 30%;
 }
 
 #recipe-image {
-  width: 40%;
+  width: 100%;
   height: auto;
   aspect-ratio: 14 / 13;
   object-fit: cover;
@@ -25,7 +42,6 @@ h2 {
   justify-content: center;
   align-items: center;
   column-gap: 30px;
-  margin-top: 30px;
 }
 
 #left-arrow, #right-arrow {
@@ -33,7 +49,8 @@ h2 {
   background: #ffffff;
   font-size: 3rem;
   cursor: pointer;
-  padding: 0;
+  padding-top: 0;
+  padding-bottom: 10px;
 }
 
 #left-arrow:hover {
@@ -45,13 +62,27 @@ h2 {
 }
 
 #comments {
-  padding: 8px;
+  padding: 4px 8px;
   border-radius: 10px;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   background: #ffffff;
   cursor: pointer;
 }
 
 #comments:hover {
   background: #e7dcdc;
+}
+
+.home-desc_wrapper {
+  text-align: left;
+  margin-top: 15px;
+}
+
+.home-desc_wrapper h4 {
+  font-size: 1.3rem;
+}
+
+#description {
+  font-size: 1.1rem;
+  margin-bottom: 0;
 }

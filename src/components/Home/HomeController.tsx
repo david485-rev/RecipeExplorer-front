@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import "../../styles/Home/Home.css";
 import HomeView from './HomeView';
 
 interface Meal {
@@ -67,9 +66,21 @@ export interface Recipe {
   description?: string;
 }
 
+export interface RecipeComment {
+  authorUuid: string;
+  creationDate: number;
+  description: string;
+  rating: number;
+  recipeUuid: string;
+  type: string;
+  uuid: string;
+}
+
 function HomeController() {
   const [recipes, setRecipes] = useState<Recipe[] | undefined>(undefined);
   const [randIndex, setRandIndex] = useState<number>(0);
+  const [recipeComments, setRecipeComments] = useState<RecipeComment[] | undefined>(undefined)
+  const [recipeRating, setRecipeRating] = useState<string>("No rating");
   
   async function getRandRecipe(recipesArr: Recipe[] | undefined) {
     const responseRand = await fetch("https://www.themealdb.com/api/json/v1/1/random.php");
@@ -78,11 +89,34 @@ function HomeController() {
     const randRecipe = transformMealData(dataRand);
     combineRecipes(randRecipe, recipesArr);
   }
+
+  async function getRecipeComments(recipeId: string | undefined) {
+    const responseComments = await fetch(`http://localhost:8888/comments/recipe/?recipe=${recipeId}`)
+    const dataComments = await responseComments.json();
+  
+    setRecipeComments(dataComments);
+    calculateRecipeRating(dataComments);
+  }
+
+  function calculateRecipeRating(comments: RecipeComment[]) {
+    const recipeRatings = comments.map(rating => {
+      return rating.rating
+    })
+
+    if (recipeRatings.length) {
+      const sumRatings = recipeRatings.reduce((prevVal, currVal) => {
+        return prevVal + currVal
+      }, 0);
+      
+      setRecipeRating(`${sumRatings / recipeRatings.length} / 10`)
+    } else {
+      setRecipeRating("No rating")
+    }
+  }
   
   function combineRecipes(randRecipe: Recipe[], recipesArr: Recipe[] | undefined) {
     if (recipesArr) {
-      const indexRand = Math.floor(Math.random() * (recipesArr.length + 1));
-      const combinedRecipes = [...recipesArr?.slice(0, indexRand), ...randRecipe, ...recipesArr?.slice(indexRand)];
+      const combinedRecipes = [...recipesArr, ...randRecipe];
       
       randomIndex(combinedRecipes);
       setRecipes(combinedRecipes);
@@ -91,9 +125,11 @@ function HomeController() {
     }
   }
   
-  function randomIndex(recipesArr: Recipe[]) {
+  async function randomIndex(recipesArr: Recipe[]) {
     const randRecipeIndex = Math.floor(Math.random() * recipesArr.length);
     setRandIndex(randRecipeIndex);
+
+    await getRecipeComments(recipes?.[randRecipeIndex].uuid)
   }
   
   function transformMealData(randRecipe: Meal): Recipe[] {
@@ -149,7 +185,7 @@ function HomeController() {
   }, [])
 
   return (
-    <HomeView recipeIndex={randIndex} recipesArr={recipes} skipRecipe={() => nextRecipe(recipes?.[randIndex].uuid)} />
+    <HomeView recipeIndex={randIndex} rating={recipeRating} comments={recipeComments} recipesArr={recipes} skipRecipe={() => nextRecipe(recipes?.[randIndex].uuid)} />
   );
 }
 
