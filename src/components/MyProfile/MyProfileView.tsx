@@ -16,12 +16,11 @@ function MyProfileView(props: any) {
    
     function submitHandler(event: any) {
         event.preventDefault();
-
         try { 
-            props.updateUser(userInput)
+            props.updateUser(userInput).then(setMessage("update sucessful"))
             setMessage("update Sucessful");
         } catch(error) {
-            setMessage("update Failed");
+            setMessage("update failed")
         }
 
     }

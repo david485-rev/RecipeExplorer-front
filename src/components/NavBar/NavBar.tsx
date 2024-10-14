@@ -34,7 +34,7 @@ function NavBar(props: any) {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <Link className="nav-link" aria-current="page" to="/users/profile">
+                            <Link className="nav-link" aria-current="page" to="/MyProfile">
                                 My Profile
                             </Link>
                         </li>
