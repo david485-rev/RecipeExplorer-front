@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import LoginView, { LoginViewType } from './LoginView';
 import axios from 'axios';
 
@@ -31,7 +32,9 @@ function LoginController(props: any) {
 
     return (
         <>
+            <h1>Sign in</h1>
             <LoginView login={login} />
+            <h4>Need to make an account? <Link to="/register">Sign up</Link></h4>
         </>
     )
 }

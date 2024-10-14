@@ -10,10 +10,11 @@ import LoginController from './components/Login/LoginController';
 
 function App() : JSX.Element {
   const [user, setUser] = useState<User>({} as any)
+  
   return (
     <div className='App'>
       <UserContext.Provider value={user}>
-      <NavBar/>
+      <NavBar setUser={setUser}/>
       <Routes>
         <Route path="/MyProfile" element={<MyProfile/>}/>
         <Route path="/" element={<HomeController />}/>
