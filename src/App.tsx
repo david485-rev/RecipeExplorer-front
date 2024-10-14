@@ -12,8 +12,8 @@ function App() : JSX.Element {
   const [user, setUser] = useState<User>({} as any)
   return (
     <div className='App'>
-      <NavBar/>
       <UserContext.Provider value={user}>
+      <NavBar/>
       <Routes>
         <Route path="/MyProfile" element={<MyProfile/>}/>
         <Route path="/" element={<HomeController />}/>
