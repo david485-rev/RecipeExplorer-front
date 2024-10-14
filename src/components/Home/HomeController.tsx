@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import "../../styles/Home/Home.css";
 import HomeView from './HomeView';
 
 interface Meal {
@@ -67,7 +66,7 @@ export interface Recipe {
   description?: string;
 }
 
-interface Comments {
+export interface RecipeComment {
   authorUuid: string;
   creationDate: number;
   description: string;
@@ -80,7 +79,7 @@ interface Comments {
 function HomeController() {
   const [recipes, setRecipes] = useState<Recipe[] | undefined>(undefined);
   const [randIndex, setRandIndex] = useState<number>(0);
-  const [recipeComments, setRecipeComments] = useState<Comments[] | undefined>(undefined)
+  const [recipeComments, setRecipeComments] = useState<RecipeComment[] | undefined>(undefined)
   const [recipeRating, setRecipeRating] = useState<string>("No rating");
   
   async function getRandRecipe(recipesArr: Recipe[] | undefined) {
@@ -99,7 +98,7 @@ function HomeController() {
     calculateRecipeRating(dataComments);
   }
 
-  function calculateRecipeRating(comments: Comments[]) {
+  function calculateRecipeRating(comments: RecipeComment[]) {
     const recipeRatings = comments.map(rating => {
       return rating.rating
     })
@@ -186,7 +185,7 @@ function HomeController() {
   }, [])
 
   return (
-    <HomeView recipeIndex={randIndex} rating={recipeRating} recipesArr={recipes} skipRecipe={() => nextRecipe(recipes?.[randIndex].uuid)} />
+    <HomeView recipeIndex={randIndex} rating={recipeRating} comments={recipeComments} recipesArr={recipes} skipRecipe={() => nextRecipe(recipes?.[randIndex].uuid)} />
   );
 }
 
