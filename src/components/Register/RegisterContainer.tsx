@@ -14,7 +14,7 @@ function RegisterContainer() {
 
   return (
     <>
-        <h1>Signup</h1>
+        <h1>Sign up</h1>
         <RegisterInput setResponseData={setResponseData}/>
         <h4>Have an account already? <Link to="/login">Sign in</Link></h4>
         {
