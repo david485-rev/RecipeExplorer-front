@@ -1,16 +1,16 @@
 import React from 'react'
 import { Recipe } from './HomeController'
 
-type HomeProps = {recipeIndex: number, recipesArr: Recipe[] | undefined, skipRecipe: () => void}
+type HomeProps = {recipeIndex: number, rating: string, recipesArr: Recipe[] | undefined, skipRecipe: () => void}
 
-function HomeView({recipeIndex, recipesArr, skipRecipe}: HomeProps) {
+function HomeView({recipeIndex, rating, recipesArr, skipRecipe}: HomeProps) {
   return (
     <div className='home-wrapper'>
       {recipesArr ? (
         <>
       <h2>{recipesArr[recipeIndex].recipeName}</h2>
       <div className='home-info_wrapper'>
-        <p><span id='cuisine'>Cuisine:&nbsp;{recipesArr[recipeIndex].cuisine}</span><span id='category'>Category:&nbsp;{recipesArr[recipeIndex].category}</span></p>
+        <p><span id="rating">{rating}</span><span id='cuisine'>Cuisine:&nbsp;{recipesArr[recipeIndex].cuisine}</span><span id='category'>Category:&nbsp;{recipesArr[recipeIndex].category}</span></p>
       </div>
       <div className='home-image_wrapper'>
         <img id="recipe-image" src={recipesArr[recipeIndex].recipeThumb} alt={recipesArr[recipeIndex].recipeName} />
