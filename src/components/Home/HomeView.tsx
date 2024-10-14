@@ -1,12 +1,14 @@
 import React from 'react'
-import { Recipe } from './HomeController'
+import "../../styles/Home/HomeView.css";
+import { Recipe, RecipeComment } from './HomeController'
+import CommentsView from './CommentsView'
 
-type HomeProps = {recipeIndex: number, rating: string, recipesArr: Recipe[] | undefined, skipRecipe: () => void}
+type HomeProps = {recipeIndex: number, rating: string, recipesArr: Recipe[] | undefined, skipRecipe: () => void, comments: RecipeComment[] | undefined}
 
-function HomeView({recipeIndex, rating, recipesArr, skipRecipe}: HomeProps) {
+function HomeView({recipeIndex, rating, comments, recipesArr, skipRecipe}: HomeProps) {
   return (
     <div className='home-wrapper'>
-      {recipesArr ? (
+      {recipesArr && recipesArr.length ? (
         <>
       <h2>{recipesArr[recipeIndex].recipeName}</h2>
       <div className='home-info_wrapper'>
@@ -23,8 +25,9 @@ function HomeView({recipeIndex, rating, recipesArr, skipRecipe}: HomeProps) {
         <button id="left-arrow" onClick={skipRecipe}>&laquo;</button>
         <button id="comments">Comments</button>
         <button id="right-arrow">&raquo;</button>
-      </div></>) : (<h2>Loading</h2>)
+      </div></>) : <h2>Loading</h2>
       }
+      <CommentsView comments={comments} />
     </div>
   )
 }
