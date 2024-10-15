@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import HomeView from './HomeView';
-const config = require("../../config");
+import config from '../../config';
 const URL = `${config.path}`;
 
 interface Meal {
