@@ -22,7 +22,7 @@ function LoginView(props: any) {
         console.log(user);
     }
     return (
-        <form id='registerForm' onSubmit={handleSubmit}>
+        <form id='loginForm' onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="inputUsername" className="htmlForm-label"></label>
                     <input type='text' placeholder='username' onChange={(e: any) => setUserInput({ ...userInput, username: e.target.value })} />
