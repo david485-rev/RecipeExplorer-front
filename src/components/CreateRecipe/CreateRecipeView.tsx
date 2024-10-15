@@ -8,7 +8,8 @@ function CreateRecipeView({submitForm, formMessage, submitted}: FormProps) {
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
-    const imageUrl = file ? URL.createObjectURL(file) : undefined
+    const imageUrl = file ? URL.createObjectURL(file) : undefined;
+
     setImageFile(imageUrl);
   }
 
