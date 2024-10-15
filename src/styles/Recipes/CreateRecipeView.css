@@ -1,0 +1,32 @@
+.create-recipe-wrapper {
+  margin: 20px auto;
+}
+
+.create-recipe-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  row-gap: 20px;
+  width: 40%;
+  margin: 0 auto;
+}
+
+.create-recipe-form label {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 4px;
+}
+
+.create-recipe-form input, .create-recipe-form textarea {
+  margin-top: 6px;
+}
+
+.create-recipe-form button {
+  padding: 10px 0;
+  background: #669dcd;
+  color: #ffffff;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
