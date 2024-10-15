@@ -81,7 +81,7 @@ export interface RecipeComment {
 function HomeController() {
   const [recipes, setRecipes] = useState<Recipe[] | undefined>(undefined);
   const [randIndex, setRandIndex] = useState<number>(0);
-  const [recipeComments, setRecipeComments] = useState<RecipeComment[] | undefined>(undefined)
+  const [recipeComments, setRecipeComments] = useState<RecipeComment[] | undefined>(undefined);
   const [recipeRating, setRecipeRating] = useState<string>("No rating");
   
   async function getRandRecipe(recipesArr: Recipe[] | undefined) {
@@ -93,7 +93,7 @@ function HomeController() {
   }
 
   async function getRecipeComments(recipeId: string | undefined) {
-    const responseComments = await fetch(`${URL}/comments/recipe/?recipe=${recipeId}`)
+    const responseComments = await fetch(`${URL}/comments/recipe/?recipe=${recipeId}`);
     const dataComments = await responseComments.json();
   
     setRecipeComments(dataComments);
@@ -102,12 +102,12 @@ function HomeController() {
 
   function calculateRecipeRating(comments: RecipeComment[]) {
     const recipeRatings = comments.map(rating => {
-      return rating.rating
+      return rating.rating;
     })
 
     if (recipeRatings.length) {
       const sumRatings = recipeRatings.reduce((prevVal, currVal) => {
-        return prevVal + currVal
+        return prevVal + currVal;
       }, 0);
 
       let ratingAvg; 
@@ -131,7 +131,7 @@ function HomeController() {
       randomIndex(combinedRecipes);
       setRecipes(combinedRecipes);
     } else {
-      setRecipes(randRecipe)
+      setRecipes(randRecipe);
     }
   }
   
@@ -139,7 +139,7 @@ function HomeController() {
     const randRecipeIndex = Math.floor(Math.random() * recipesArr.length);
     setRandIndex(randRecipeIndex);
 
-    await getRecipeComments(recipes?.[randRecipeIndex].uuid)
+    await getRecipeComments(recipesArr[randRecipeIndex].uuid);
   }
   
   function transformMealData(randRecipe: Meal): Recipe[] {
@@ -188,10 +188,10 @@ function HomeController() {
       const response = await fetch(`${URL}/recipes`);
       const data = await response.json();
 
-      await getRandRecipe(data)
+      await getRandRecipe(data);
     }
 
-    getRecipes()
+    getRecipes();
   }, [])
 
   return (
