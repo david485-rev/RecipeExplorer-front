@@ -9,31 +9,31 @@ function CreateRecipeView({submitForm, formMessage, submitted}: FormProps) {
       <h2>Create A New Recipe</h2>
       <form className="create-recipe-form" method='POST' onSubmit={submitForm}>
         <label>Recipe name
-        <input type="text" id='recipe-name' name='recipeName'/>
+        <input type="text" id='recipe-name' name='recipeName' required/>
         </label>
         
         <label>Category
-        <input type="text" id='recipe-category' name='category'/>
+        <input type="text" id='recipe-category' name='category' required/>
         </label>
 
         <label>Cuisine
-        <input type="text" id='recipe-cuisine' name='cuisine'/>
+        <input type="text" id='recipe-cuisine' name='cuisine' required/>
         </label>
 
         <label>Description
-        <textarea id='description' name='description'/>
+        <textarea id='description' name='description' required/>
         </label>
 
         <label>Instructions
-        <textarea id='recipe-instructions' name='instructions'/>
+        <textarea id='recipe-instructions' name='instructions' required/>
         </label>
 
         <label>Ingredients
-        <input type='text' id='recipe-ingredients' name='ingredients'/>
+        <input type='text' id='recipe-ingredients' name='ingredients' required/>
         </label>
 
         <label>Image
-        <input type="file" id='recipe-image-upload' name='recipeThumb'/>
+        <input type="file" id='recipe-image-upload' name='recipeThumb' required/>
         </label>
 
         <div className='recipe-form-message'>
