@@ -33,18 +33,24 @@ function NavBar(props: any) {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        {
+                            user?.token ? (
+                        <>
                         <li className="nav-item">
                             <Link className="nav-link" aria-current="page" to="/users/profile">
                                 My Profile
                             </Link>
                         </li>
                         <li className="nav-item">
-                            {
-                                user?.token ?
-                                    <Link className="nav-link" to="/" onClick={logout}>Logout</Link> :
-                                    <Link className="nav-link" to="/login">Login</Link>
-                            }
+                            <Link className="nav-link" to="/" onClick={logout}>Logout</Link></li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/create-recipe"></Link>
                         </li>
+                        </> ):
+                        <li>
+                            <Link className="nav-link" to="/login">Login</Link>
+                        </li>
+                        }
                     </ul>
                     <form className="d-flex">
                         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
