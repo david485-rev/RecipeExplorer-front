@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
-
+import { useContext, useState } from 'react'
+import { UserContext } from '../Context/UserContext';
 export type LoginViewType = {
     username: string,
     password: string
 }
 
+
 function LoginView(props: any) {
+
+    const user = useContext(UserContext);
 
     const [userInput, setUserInput] = useState<LoginViewType>({ username: "", password: "" });
 
@@ -14,13 +17,11 @@ function LoginView(props: any) {
         props.login(userInput);
     }
 
+    function handleTestButton(event: any){
+        event.preventDefault();
+        console.log(user);
+    }
     return (
-        // <form onSubmit={handleSubmit}>
-        //     <input type='text' placeholder='username' onChange={(e: any) => setUserInput({ ...userInput, username: e.target.value })} />
-        //     <input type='password' placeholder='password' onChange={(e: any) => setUserInput({ ...userInput, password: e.target.value })} />
-        //     <button type="submit">Submit</button>
-        //     <button type="reset">Reset</button>
-        // </form>
         <form id='registerForm' onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="inputUsername" className="htmlForm-label"></label>
@@ -34,6 +35,7 @@ function LoginView(props: any) {
                 <div>
                     <button type="submit" className="btn btn-primary mx-3">Submit</button>
                     <button type="reset" className="btn btn-danger mx-3">Reset</button>
+                    {/*<button type="button" className="btn btn-danger mx-3" onClick={handleTestButton}>Test</button>*/}
                 </div>
                 
             </form>
