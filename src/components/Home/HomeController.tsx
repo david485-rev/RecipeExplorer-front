@@ -85,19 +85,27 @@ function HomeController() {
   const [recipeRating, setRecipeRating] = useState<string>("No rating");
   
   async function getRandRecipe(recipesArr: Recipe[] | undefined) {
-    const responseRand = await fetch("https://www.themealdb.com/api/json/v1/1/random.php");
-    const dataRand = await responseRand.json();
-    
-    const randRecipe = transformMealData(dataRand);
-    combineRecipes(randRecipe, recipesArr);
+    try {
+      const responseRand = await fetch("https://www.themealdb.com/api/json/v1/1/random.php");
+      const dataRand = await responseRand.json();
+      
+      const randRecipe = transformMealData(dataRand);
+      combineRecipes(randRecipe, recipesArr);
+    } catch(err) {
+      console.error(err)
+    }
   }
 
   async function getRecipeComments(recipeId: string | undefined) {
-    const responseComments = await fetch(`${URL}/comments/recipe/?recipe=${recipeId}`);
-    const dataComments = await responseComments.json();
-  
-    setRecipeComments(dataComments);
-    calculateRecipeRating(dataComments);
+    try {
+      const responseComments = await fetch(`${URL}/comments/recipe/?recipe=${recipeId}`);
+      const dataComments = await responseComments.json();
+    
+      setRecipeComments(dataComments);
+      calculateRecipeRating(dataComments);
+    } catch(err) {
+      console.error(err)
+    }
   }
 
   function calculateRecipeRating(comments: RecipeComment[]) {
@@ -136,10 +144,14 @@ function HomeController() {
   }
   
   async function randomIndex(recipesArr: Recipe[]) {
-    const randRecipeIndex = Math.floor(Math.random() * recipesArr.length);
-    setRandIndex(randRecipeIndex);
-
-    await getRecipeComments(recipesArr[randRecipeIndex].uuid);
+    try {
+      const randRecipeIndex = Math.floor(Math.random() * recipesArr.length);
+      setRandIndex(randRecipeIndex);
+  
+      await getRecipeComments(recipesArr[randRecipeIndex].uuid);
+    } catch(err) {
+      console.error(err)
+    }
   }
   
   function transformMealData(randRecipe: Meal): Recipe[] {
@@ -176,11 +188,15 @@ function HomeController() {
   }
   
   async function nextRecipe(recipeId: string | undefined) {
-    const recipesRemoved = recipes?.filter((recipe: any) => {
-        return recipe.uuid !== recipeId;
-    })
-
-    await getRandRecipe(recipesRemoved);
+    try {
+      const recipesRemoved = recipes?.filter((recipe: any) => {
+          return recipe.uuid !== recipeId;
+      })
+  
+      await getRandRecipe(recipesRemoved);
+    } catch(err) {
+      console.error(err)
+    }
   }
 
   useEffect(() => {
