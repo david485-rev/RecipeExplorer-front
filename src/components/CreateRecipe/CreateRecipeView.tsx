@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "../../styles/Recipes/CreateRecipeView.css"
 
 type FormProps = {submitForm: (event: React.FormEvent<HTMLFormElement>) => void, formMessage: string, submitted: boolean}
 
 function CreateRecipeView({submitForm, formMessage, submitted}: FormProps) {
+  const [imageFile, setImageFile] = useState<string | undefined>(undefined);
+
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    const imageUrl = file ? URL.createObjectURL(file) : undefined
+    setImageFile(imageUrl);
+  }
+
   return (
     <div className='create-recipe-wrapper'>
       <h2>Create A New Recipe</h2>
@@ -33,7 +41,8 @@ function CreateRecipeView({submitForm, formMessage, submitted}: FormProps) {
         </label>
 
         <label>Image
-        <input type="file" id='recipe-image-upload' name='recipeThumb' required/>
+        <input type="file" id='recipe-image-upload' name='recipeThumb' onChange={handleChange} required/>
+        {imageFile ? <img id='image-preview' src={imageFile} alt="preview" /> : ''}
         </label>
 
         <div className='recipe-form-message'>
