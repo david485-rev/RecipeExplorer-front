@@ -42,10 +42,10 @@ function NavBar(props: any) {
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/" onClick={logout}>Logout</Link></li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/create-recipe"></Link>
+                            <Link className="nav-link" to="/create-recipe">Create Recipe</Link>
                         </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/" onClick={logout}>Logout</Link></li>
                         </> ):
                         <li>
                             <Link className="nav-link" to="/login">Login</Link>
