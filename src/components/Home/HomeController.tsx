@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import HomeView from './HomeView';
+const config = require("../../config");
+const URL = `${config.path}`;
 
 interface Meal {
   meals: [ 
@@ -91,7 +93,7 @@ function HomeController() {
   }
 
   async function getRecipeComments(recipeId: string | undefined) {
-    const responseComments = await fetch(`http://localhost:8888/comments/recipe/?recipe=${recipeId}`)
+    const responseComments = await fetch(`${URL}/comments/recipe/?recipe=${recipeId}`)
     const dataComments = await responseComments.json();
   
     setRecipeComments(dataComments);
@@ -183,7 +185,7 @@ function HomeController() {
 
   useEffect(() => {
     async function getRecipes() {
-      const response = await fetch("http://localhost:8888/recipes");
+      const response = await fetch(`${URL}/recipes`);
       const data = await response.json();
 
       await getRandRecipe(data)
