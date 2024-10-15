@@ -19,7 +19,7 @@ function App() : JSX.Element {
         <Route path="/MyProfile" element={<MyProfile/>}/>
         <Route path="/" element={<HomeController />}/>
         <Route path="/register" element={<RegisterContainer/>}/>
-        <Route path="/login" element={<LoginController setUser={(user: any) => setUser(user)} />} />
+        <Route path="/login" element={<LoginController setUser={setUser} />} />
       </Routes>
       </UserContext.Provider>
     </div>
