@@ -36,9 +36,10 @@ function CreateRecipeView({submitForm, formMessage, submitted}: FormProps) {
         <input type="file" id='recipe-image-upload' name='recipeThumb'/>
         </label>
 
-        <div>
-        <p className='recipe-form-message'>{formMessage ? formMessage : "" }</p>
+        <div className='recipe-form-message'>
+          <p>{formMessage ? formMessage : "" }</p>
         </div>
+
         <button type='submit'>{submitted ? "Recipe Submitted" : "Submit Recipe"}</button>
       </form>
     </div>
