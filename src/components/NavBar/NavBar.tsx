@@ -6,7 +6,7 @@ function NavBar(props: any) {
     const user = useContext(UserContext);
 
     const logout = () => {
-        props.setUser(undefined);
+        //props.setUser(undefined);
         return <Link className="nav-link" to="/">Logout</Link>;
     }
 

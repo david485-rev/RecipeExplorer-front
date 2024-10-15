@@ -1,18 +1,19 @@
-import React, { useState } from 'react'
+import { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import LoginView, { LoginViewType } from './LoginView';
 import axios from 'axios';
+import { UserContext } from '../Context/UserContext';
 
 const config = require("../../config");
 
 const URL = `${config.path}`;
 
 function LoginController(props: any) {
+    const user = useContext(UserContext);
 
-
-    async function login(user: LoginViewType) {
+    async function login(newUser: LoginViewType) {
         try {
-            let response: any = await getUser(user);
+            let response: any = await getUser(newUser);
             props.setUser(response.data);
         } catch (error) {
             console.error(error);
@@ -29,6 +30,15 @@ function LoginController(props: any) {
         }
     }
 
+    async function getUserData(){
+        try{
+            let response = await axios.post(`${URL}/users/user-by-token`);
+            console.log(response);
+            return response;
+        }catch(error){
+            console.error(error);
+        }
+    }
 
     return (
         <>
