@@ -1,16 +1,15 @@
 import React from 'react'
 import "../../styles/Recipes/CreateRecipeView.css"
-import config from '../../config';
 
-const URL = `${config.path}`;
+type FormProps = {submitForm: (event: React.FormEvent<HTMLFormElement>) => void, formMessage: string, submitted: boolean}
 
-function CreateRecipeView() {
+function CreateRecipeView({submitForm, formMessage, submitted}: FormProps) {
   return (
     <div className='create-recipe-wrapper'>
       <h2>Create A New Recipe</h2>
-      <form className="create-recipe-form" method='POST' action={`${URL}/recipes`}>
+      <form className="create-recipe-form" method='POST' onSubmit={submitForm}>
         <label>Recipe name
-        <input type="text" id='recipe-name' name='recipe-name'/>
+        <input type="text" id='recipe-name' name='recipeName'/>
         </label>
         
         <label>Category
@@ -34,10 +33,13 @@ function CreateRecipeView() {
         </label>
 
         <label>Image
-        <input type="file" id='recipe-image-upload' name='image'/>
+        <input type="file" id='recipe-image-upload' name='recipeThumb'/>
         </label>
 
-        <button type='submit'>Create Recipe</button>
+        <div>
+        <p className='recipe-form-message'>{formMessage ? formMessage : "" }</p>
+        </div>
+        <button type='submit'>{submitted ? "Recipe Submitted" : "Submit Recipe"}</button>
       </form>
     </div>
   )
