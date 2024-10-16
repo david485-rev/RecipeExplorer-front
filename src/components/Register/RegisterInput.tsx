@@ -65,7 +65,7 @@ function RegisterInput(props: any) {
 
     return (
         <>
-            <form id='registerForm' onSubmit={submitHandler}>
+            <form id='registerForm' onSubmit={submitHandler} aria-label="form">
                 <div className="mb-3">
                     <label htmlFor="inputEmail" className="htmlForm-label"></label>
                     <input type="email" name="email" placeholder='email' className="htmlForm-control" id="inputEmail" aria-describedby="emailHelp"/>
