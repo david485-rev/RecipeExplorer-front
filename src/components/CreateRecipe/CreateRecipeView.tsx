@@ -61,7 +61,7 @@ function CreateRecipeView({submitForm, formMessage, submitted}: FormProps) {
   return (
     <div className='create-recipe-wrapper'>
       <h2>Create A New Recipe</h2>
-      <form ref={recipeFormRef} className="create-recipe-form" method='POST' onSubmit={handleImageInsertion}>
+      <form ref={recipeFormRef} className="create-recipe-form" onSubmit={handleImageInsertion}>
         <label>Recipe name
         <input type="text" id='recipe-name' name='recipeName' required/>
         </label>
