@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "../../styles/Home/HomeView.css";
 import { Recipe, RecipeComment } from './HomeController'
 import CommentsView from './CommentsView'
@@ -6,6 +6,12 @@ import CommentsView from './CommentsView'
 type HomeProps = {recipeIndex: number, rating: string, recipesArr: Recipe[] | undefined, skipRecipe: () => void, comments: RecipeComment[] | undefined}
 
 function HomeView({recipeIndex, rating, comments, recipesArr, skipRecipe}: HomeProps) {
+  const [visible, setVisibile] = useState<boolean>(false);
+
+  function toggleComments() {
+    setVisibile(!visible)
+  }
+
   return (
     <div className='home-wrapper'>
       {recipesArr && recipesArr.length ? (
@@ -23,11 +29,11 @@ function HomeView({recipeIndex, rating, comments, recipesArr, skipRecipe}: HomeP
       </div>
       <div className='buttons-wrapper'>
         <button id="left-arrow" onClick={skipRecipe}>&laquo;</button>
-        <button id="comments">Comments</button>
+        <button id="comments" onClick={toggleComments}>Comments</button>
         <button id="right-arrow">&raquo;</button>
       </div></>) : <h2>Loading</h2>
       }
-      <CommentsView comments={comments} />
+      <CommentsView isVisible={visible} comments={comments} />
     </div>
   )
 }
