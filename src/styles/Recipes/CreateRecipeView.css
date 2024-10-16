@@ -28,8 +28,9 @@
 }
 
 #recipe-image-upload-label {
-  width: 100px;
-  overflow: hidden;
+  /* width: 100px;
+  overflow: hidden; */
+  width: 210px;
 }
 
 #image-preview {
