@@ -1,4 +1,5 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 import CreateRecipeView from './CreateRecipeView'
 import { UserContext } from '../Context/UserContext'
 import config from '../../config';
@@ -8,6 +9,7 @@ function CreateRecipeController() {
   const [submitted, setSubmitted] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
   const user = useContext(UserContext);
+  const navigate = useNavigate();
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -48,6 +50,12 @@ function CreateRecipeController() {
       console.error(err)
     }
   }
+
+  useEffect(() => {
+    if (!user?.token) {
+      navigate("/");
+    }
+  }, [user?.token, navigate]);
 
   return (
     <CreateRecipeView submitForm={handleSubmit} formMessage={message} submitted={submitted}/>
