@@ -76,7 +76,7 @@ function RegisterView(props: any) {
     return (
         <>
             <h1>Sign up</h1>
-            <form id='registerForm' onSubmit={submitHandler} aria-label='form'>
+            <form id='registerForm' onSubmit={submitHandler}>
                 <div className="mb-3">
                     <label htmlFor="inputEmail" className="form-label"></label>
                     {/* <input type="email" name="email" placeholder='email' className="form-control is-invalid" id="inputEmail" aria-describedby="serverEmailFeedback" /> */}
