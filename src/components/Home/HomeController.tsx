@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import HomeView from './HomeView';
+import config from '../../config';
+const URL = `${config.path}`;
 
 interface Meal {
   meals: [ 
@@ -79,33 +81,41 @@ export interface RecipeComment {
 function HomeController() {
   const [recipes, setRecipes] = useState<Recipe[] | undefined>(undefined);
   const [randIndex, setRandIndex] = useState<number>(0);
-  const [recipeComments, setRecipeComments] = useState<RecipeComment[] | undefined>(undefined)
+  const [recipeComments, setRecipeComments] = useState<RecipeComment[] | undefined>(undefined);
   const [recipeRating, setRecipeRating] = useState<string>("No rating");
   
   async function getRandRecipe(recipesArr: Recipe[] | undefined) {
-    const responseRand = await fetch("https://www.themealdb.com/api/json/v1/1/random.php");
-    const dataRand = await responseRand.json();
-    
-    const randRecipe = transformMealData(dataRand);
-    combineRecipes(randRecipe, recipesArr);
+    try {
+      const responseRand = await fetch("https://www.themealdb.com/api/json/v1/1/random.php");
+      const dataRand = await responseRand.json();
+      
+      const randRecipe = transformMealData(dataRand);
+      combineRecipes(randRecipe, recipesArr);
+    } catch(err) {
+      console.error(err)
+    }
   }
 
   async function getRecipeComments(recipeId: string | undefined) {
-    const responseComments = await fetch(`http://localhost:8888/comments/recipe/?recipe=${recipeId}`)
-    const dataComments = await responseComments.json();
-  
-    setRecipeComments(dataComments);
-    calculateRecipeRating(dataComments);
+    try {
+      const responseComments = await fetch(`${URL}/comments/recipe/?recipe=${recipeId}`);
+      const dataComments = await responseComments.json();
+    
+      setRecipeComments(dataComments);
+      calculateRecipeRating(dataComments);
+    } catch(err) {
+      console.error(err)
+    }
   }
 
   function calculateRecipeRating(comments: RecipeComment[]) {
     const recipeRatings = comments.map(rating => {
-      return rating.rating
+      return rating.rating;
     })
 
     if (recipeRatings.length) {
       const sumRatings = recipeRatings.reduce((prevVal, currVal) => {
-        return prevVal + currVal
+        return prevVal + currVal;
       }, 0);
 
       let ratingAvg; 
@@ -129,15 +139,19 @@ function HomeController() {
       randomIndex(combinedRecipes);
       setRecipes(combinedRecipes);
     } else {
-      setRecipes(randRecipe)
+      setRecipes(randRecipe);
     }
   }
   
   async function randomIndex(recipesArr: Recipe[]) {
-    const randRecipeIndex = Math.floor(Math.random() * recipesArr.length);
-    setRandIndex(randRecipeIndex);
-
-    await getRecipeComments(recipes?.[randRecipeIndex].uuid)
+    try {
+      const randRecipeIndex = Math.floor(Math.random() * recipesArr.length);
+      setRandIndex(randRecipeIndex);
+  
+      await getRecipeComments(recipesArr[randRecipeIndex].uuid);
+    } catch(err) {
+      console.error(err)
+    }
   }
   
   function transformMealData(randRecipe: Meal): Recipe[] {
@@ -174,22 +188,26 @@ function HomeController() {
   }
   
   async function nextRecipe(recipeId: string | undefined) {
-    const recipesRemoved = recipes?.filter((recipe: any) => {
-        return recipe.uuid !== recipeId;
-    })
-
-    await getRandRecipe(recipesRemoved);
+    try {
+      const recipesRemoved = recipes?.filter((recipe: any) => {
+          return recipe.uuid !== recipeId;
+      })
+  
+      await getRandRecipe(recipesRemoved);
+    } catch(err) {
+      console.error(err)
+    }
   }
 
   useEffect(() => {
     async function getRecipes() {
-      const response = await fetch("http://localhost:8888/recipes");
+      const response = await fetch(`${URL}/recipes`);
       const data = await response.json();
 
-      await getRandRecipe(data)
+      await getRandRecipe(data);
     }
 
-    getRecipes()
+    getRecipes();
   }, [])
 
   return (
