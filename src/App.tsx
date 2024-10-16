@@ -3,7 +3,7 @@ import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import HomeController from './components/Home/HomeController';
 import RegisterContainer from './components/Register/RegisterContainer';
-import MyProfile from './components/MyProfile/MyProfile';
+import MyProfileController from './components/MyProfile/MyProfileController';
 import NavBar from './components/NavBar/NavBar';
 import {User, UserContext} from "./components/Context/UserContext"
 import LoginController from './components/Login/LoginController';
@@ -17,7 +17,7 @@ function App() : JSX.Element {
       <UserContext.Provider value={user}>
       <NavBar setUser={setUser}/>
       <Routes>
-        <Route path="/MyProfile" element={<MyProfile/>}/>
+        <Route path="/MyProfile" element={<MyProfileController/>}/>
         <Route path="/" element={<HomeController />}/>
         <Route path="/register" element={<RegisterContainer/>}/>
         <Route path="/login" element={<LoginController setUser={setUser} />} />

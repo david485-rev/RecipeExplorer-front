@@ -37,7 +37,7 @@ function NavBar(props: any) {
                             user?.token ? (
                         <>
                         <li className="nav-item">
-                            <Link className="nav-link" aria-current="page" to="/users/profile">
+                            <Link className="nav-link" aria-current="page" to="/MyProfile">
                                 My Profile
                             </Link>
                         </li>
