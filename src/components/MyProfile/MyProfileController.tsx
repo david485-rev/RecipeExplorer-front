@@ -3,7 +3,8 @@ import axios from 'axios';
 import {UserContext} from '../Context/UserContext';
 import MyProfileView from './MyProfileView'; 
 import { ProfileInputType } from './MyProfileView';
-
+import config from '../../config';
+const URL = `${config.path}`;
 
 function MyProfileController(props: any) { 
 
@@ -13,7 +14,7 @@ function MyProfileController(props: any) {
         const token = user?.token;    
         const headers = {'Authorization': `Bearer ${token}`};
         try{
-             axios.post('http://localhost:8888/users/profile', {
+             axios.post(`${URL}/users/profile`, {
                 
                 username: userInput.username,
                 email: userInput.email,

@@ -2,6 +2,8 @@ import React, { useEffect, useState, useContext } from 'react'
 import axios from 'axios';
 import {UserContext} from '../Context/UserContext';
 import "../../styles/MyProfile/MyProfileView.css";
+import config from '../../config';
+const URL = `${config.path}`;
 export type ProfileInputType = {
     username: string,
     email: string,
@@ -28,9 +30,8 @@ function MyProfileView(props: any) {
 
     useEffect(() => {
         try {
-            //const uuid = user?.uuid;
-            const uuid = '2d1395d9-0d90-4c0c-9cf1-d42bcfb2b780';
-            axios.get(`http://localhost:8888/users/profile/${uuid}`).then((responseBody)=>{
+            const uuid = user?.uuid;
+            axios.get(`${URL}/users/profile/${uuid}`).then((responseBody)=>{
             setUserInput(responseBody.data);
             })
         } catch(error) {
@@ -53,11 +54,11 @@ function MyProfileView(props: any) {
                                 <br/>
                                 <label htmlFor="username">Username:</label>
                                 <br/>
-                                <input type="text" value={userInput.username} onChange={(event: any) => setUserInput({...userInput, username: event.target.value})}/>
+                                <input type="text" value={userInput.username} required onChange={(event: any) => setUserInput({...userInput, username: event.target.value})}/>
                                 <br/>
                                 <label htmlFor="email">Email:</label>
                                 <br/>
-                                <input type="text" value={userInput.email} onChange={(event: any) => setUserInput({...userInput, email: event.target.value})}/>
+                                <input type="text" value={userInput.email} required onChange={(event: any) => setUserInput({...userInput, email: event.target.value})}/>
                                 <br/>
                                 <label htmlFor="description">Description:</label>
                                 <br/>
