@@ -22,11 +22,21 @@
   margin-top: 6px;
 }
 
+.image-upload-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+#recipe-image-upload-label {
+  width: 100px;
+  overflow: hidden;
+}
+
 #image-preview {
   width: 40%;
   height: auto;
   border: 1px solid #333333;
-  margin-top: 12px;
+  margin-top: 10px;
 }
 
 .create-recipe-form button {
