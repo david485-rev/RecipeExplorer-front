@@ -8,9 +8,11 @@ function CreateRecipeView({submitForm, formMessage, submitted}: FormProps) {
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
-    const imageUrl = file ? URL.createObjectURL(file) : undefined;
 
-    setImageFile(imageUrl);
+    if (file) {
+      const imageUrl = file ? URL.createObjectURL(file) : undefined;
+      setImageFile(imageUrl);
+    }
   }
 
   return (
@@ -41,10 +43,12 @@ function CreateRecipeView({submitForm, formMessage, submitted}: FormProps) {
         <input type='text' id='recipe-ingredients' name='ingredients' required/>
         </label>
 
-        <label>Image
-        <input type="file" id='recipe-image-upload' name='recipeThumb' onChange={handleChange} required/>
-        {imageFile ? <img id='image-preview' src={imageFile} alt="preview" /> : ''}
-        </label>
+        <div className="image-upload-wrapper">
+          <label id="recipe-image-upload-label">Image
+          <input type="file" id='recipe-image-upload' name='recipeThumb' onChange={handleChange} required/>
+          </label>
+          {imageFile ? <img id='image-preview' src={imageFile} alt="preview" /> : ''}
+        </div>
 
         <div className='recipe-form-message'>
           <p>{formMessage ? formMessage : "" }</p>
