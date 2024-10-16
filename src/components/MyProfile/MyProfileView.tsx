@@ -41,6 +41,7 @@ function MyProfileView(props: any) {
 
     return (
         <>  
+            <div className='backGround'>
             <div className="container mt-5">
                 <div className="row d-flex justify-content-center" >
                     <div className="col-md-7">
@@ -70,6 +71,7 @@ function MyProfileView(props: any) {
                         </div>
                     </div>  
                 </div>  
+            </div>
             </div>
         </>    
     )

@@ -1,4 +1,4 @@
-body{
+.backGround{
     background:#eee;
 }
 
@@ -44,13 +44,13 @@ body{
 }
 
 .button {
-    border:1px solid #8E24AA !important;
+    border:1px solid #8E24AA;
     color:#8E24AA;
     height:40px;
 }
 
 .button:hover{
-    border:1px solid #8E24AA !important;
+    border:1px solid #8E24AA;
     color:#fff;
     height:40px;
     background-color:#8E24AA;
