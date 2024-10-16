@@ -11,21 +11,15 @@ function CreateRecipeController() {
   const user = useContext(UserContext);
   const navigate = useNavigate();
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-
+  function handleSubmit(formData: Object) {
     try {
-      const form = e.currentTarget;
-      const formData = new FormData(form);
-      const formJson = Object.fromEntries(formData.entries());
-
-      if (Object.values(formJson).includes("")) {
-        setMessage("All fields are required")
+      if (Object.values(formData).includes("")) {
+        setMessage("All fields are required");
       } else {
-        createRecipe(formJson);
+        createRecipe(formData);
       }
     } catch(err) {
-      console.error(err)
+      console.error(err);
     }
   }
 
@@ -43,11 +37,13 @@ function CreateRecipeController() {
       const recipeResponse = await fetch(`${URL}/recipes`, payload);
       
       if (recipeResponse.ok) {
-        setSubmitted(true)
+        setSubmitted(true);
       }
+
+      setTimeout(() => setSubmitted(false), 500);
     } catch(err) {
-      setMessage("Failed to submit recipe, try again")
-      console.error(err)
+      setMessage("Failed to submit recipe, try again");
+      console.error(err);
     }
   }
 
