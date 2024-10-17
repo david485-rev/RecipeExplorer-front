@@ -32,6 +32,7 @@ function RegisterController() {
   return (
     <>
         <RegisterView registerUser={registerUser} responseMessage={responseMessage}/>
+        <h4>Have an account already? <Link to="/login">Sign in</Link></h4>
     </>
     
   )

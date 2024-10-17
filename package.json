@@ -24,6 +24,12 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "jest": {
+    "transform": {
+      "^.+\\.[t|j]sx?$": "babel-jest"
+    },
+    "transformIgnorePatterns": []
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -41,5 +47,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "babel-jest": "^29.7.0"
   }
 }
