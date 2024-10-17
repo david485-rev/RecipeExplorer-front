@@ -1,12 +1,15 @@
 import { fireEvent, render, screen, within } from "@testing-library/react";
-import RegisterContainer from "./RegisterContainer";
+import axios from 'axios';
+import RegisterController from "./RegisterController";
 import { BrowserRouter } from 'react-router-dom';
+
+jest.mock('axios');
 
 describe('Register Container Tests', ()=> {
     test('We are greeted with Sign up', () => {
         render(
             <BrowserRouter>
-                <RegisterContainer/>
+                <RegisterController/>
             </BrowserRouter>
         );
 
@@ -18,7 +21,7 @@ describe('Register Container Tests', ()=> {
     test('There is a link to login', () => {
         render(
             <BrowserRouter>
-                <RegisterContainer/>
+                <RegisterController/>
             </BrowserRouter>
         );
 
@@ -30,7 +33,7 @@ describe('Register Container Tests', ()=> {
     test('There is a form with three inputs', () => {
         render(
             <BrowserRouter>
-                <RegisterContainer/>
+                <RegisterController/>
             </BrowserRouter>
         );
 
