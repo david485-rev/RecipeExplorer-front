@@ -10,6 +10,8 @@ const URL = `${config.path}`;
 
 function LoginController(props: any) {
     const navigate = useNavigate();
+    let [responseMessage, setResponseMessage] = useState<string>("");
+
     async function login(newUser: LoginViewType) {
         try {
             
@@ -27,7 +29,7 @@ function LoginController(props: any) {
                 //console.log(userData)
                 props.setUser(userData)
             }
-        } catch (error) {
+        } catch (error: any) {
             console.error(error);
         }
     }
@@ -37,8 +39,9 @@ function LoginController(props: any) {
             let response = await axios.post(`${URL}/users/login`, user);
             //console.log(response);
             return response;
-        } catch (error) {
+        } catch (error: any) {
             console.error(error);
+            setResponseMessage(error.response.data.message);
         }
     }
 
@@ -56,7 +59,7 @@ function LoginController(props: any) {
     return (
         <>
             <h1>Sign in</h1>
-            <LoginView login={login} />
+            <LoginView login={login} responseMessage={responseMessage}/>
             <h4>Need to make an account? <Link to="/register">Sign up</Link></h4>
         </>
     )
