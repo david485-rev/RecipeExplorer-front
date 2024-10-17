@@ -37,9 +37,7 @@ function NavBar(props: any) {
                             user?.token ? (
                         <>
                         <li className="nav-item">
-                            <Link className="nav-link" aria-current="page" to="/MyProfile">
-                                My Profile
-                            </Link>
+                            <Link className="nav-link" aria-current="page" to={`profile/${user.uuid}`}>My Profile</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/create-recipe">Create Recipe</Link>
