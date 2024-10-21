@@ -89,7 +89,7 @@ function HomeController() {
       const response = await fetch("https://www.themealdb.com/api/json/v1/1/random.php");
       
       if (!response.ok) {
-        throw new Error(`Error getting recipe. status: ${response.status}`);
+        console.error("Error getting recipe");
       }
 
       const dataRand = await response.json();
@@ -106,7 +106,7 @@ function HomeController() {
       const response = await fetch(`${URL}/comments/recipe/?recipe=${recipeId}`);
 
       if (!response.ok) {
-        throw new Error(`Error getting comments. status: ${response.status}`);
+        console.error("Error getting comments");
       }
 
       const dataComments = await response.json();
@@ -215,7 +215,7 @@ function HomeController() {
         const response = await fetch(`${URL}/recipes`);
 
         if (!response.ok) {
-          throw new Error(`Error getting recipes. status: ${response.status}`);
+          console.error("Error getting recipes");
         }
 
         const data = await response.json();
